@@ -15,10 +15,10 @@ header{
     margin-right: 3%;
 }
 
-.header-links{
-    margin-bottom: 1%;
-    margin-left: 1%;
-    margin-right: 1%;
+a .header-links{
+    margin-bottom: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
     display: flex;
     text-decoration: none;
 
@@ -30,7 +30,8 @@ header{
     font-style: normal;
   }
 
-.header-links:hover {
+a .header-links:hover {
     text-decoration: underline;
+    transform: translateY(5px);
+    transition: transform 0.3s ease, color 0.3s ease;
   }
-  
