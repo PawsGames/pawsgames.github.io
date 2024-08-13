@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(67, 67, 67);
+    background-color: #333333;
     color: white;
 }
 
@@ -72,3 +72,30 @@ a .header-links:hover {
     color: white;
     margin: 10px;
 }
+
+a{
+    color: rgb(188, 180, 255);
+    text-decoration: none;
+}
+
+footer{
+    display:flex;
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    margin-right: 3%;
+    background-color: #0e0e0e;
+    flex-shrink: 0;
+}
+
+html, body{
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Viewport height */
+  }
