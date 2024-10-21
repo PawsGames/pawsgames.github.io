@@ -7,7 +7,10 @@
         <link href="https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>PawsGames</title>
+        <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
     </head>
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+    <script src="/firebasejs.js"></script>
     <body>
         <header>
             <img class="logo" src="/website/images/logo.png" width="11%">
@@ -19,10 +22,12 @@
                 <a href="/contact.html"><h3 class="header-links">Contact</h3></a>
                 <a href="/communitygames.html"><h3 class="header-links">Community</h3></a> 
                 <a href="/rules.html"><h3 class="header-links">Rules</h3></a>
+                <p id="userNameDisplay"></p>
+
         </header>
-        <h1>PawsGames</h1>
-        <p>Welcome to the PawsGames website! You can read our <a href="/resources/license/ourlicense.html">License here.</a> We make free games for YOU to play! Visit our Community's game too! Upload and download games, for free!</p>
-        <button class="Button" width="32px" height="32px"><a href="/Assistant AI.html"><h3 class="header-links">Open Assistant AI</h3></a></button>
-        <a href="/login.html">Log in</a>
-</body>
+    </body>
+    <button id="googleSignInButton" class="Button">Sign in with Google</button>
+    <button id="emailSignInButton" class="Button">Sign in with Email/Password</button>
+    <input id="emailInput" type="email" placeholder="Email">
+    <input id="passwordInput" type="password" placeholder="Password">
 </html>

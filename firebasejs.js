@@ -1,46 +1,66 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+// This file is loaded by the login.html file
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+import 'firebase/database';
+import 'firebase/storage';
 
-// TODO: Replace the following with your app's Firebase project configuration
-// See: https://firebase.google.com/docs/web/learn-more#config-object
 const firebaseConfig = {
-  var firebaseConfig = {
-    apiKey: "AIzaSyD9-wiUrzzOC_ru8sBoxSsmAKsWzBQDuvs",
-    authDomain: "pawsindie-cd14.firebaseapp.com",
-    projectId: "pawsindie-cd14",
-    storageBucket: "pawsindie-cd14.appspot.com",
-    messagingSenderId: "1002560556627",
-    appId: "1:1002560556627:web:3a6709764dd9516afd00a6",
-    measurementId: "G-NZN3KYEB71"
-};
+  apiKey: "AIzaSyD9-wiUrzzOC_ru8sBoxSsmAKsWzBQDuvs",
+  authDomain: "pawsindie-cd14.firebaseapp.com",
+  projectId: "pawsindie-cd14",
+  storageBucket: "pawsindie-cd14.appspot.com",
+  messagingSenderId: "1002560556627",
+  appId: "1:1002560556627:web:3a6709764dd9516afd00a6",
+  measurementId: "G-NZN3KYEB71"
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
+// Sign in with Google
+function signInWithGoogle() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider)
+    .then((result) => {
+      // User is signed in
+      const user = result.user;
+      console.log("User signed in with Google:", user);
+      const userName = user.displayName || user.email; // Use displayName for Google, email for Email/Password
+      const userNameDisplay = document.getElementById('userNameDisplay');
+      userNameDisplay.textContent = `Welcome, ${userName}!`;
+    })
+    .catch((error) => {
+      // Handle Errors
+      console.error("Error signing in with Google:", error);
+    });
+}
 
-// Initialize Firebase Authentication and get a reference to the service
-const auth = getAuth(app);
+// Sign in with Email/Password
+function signInWithEmailAndPassword(email, password) {
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      console.log("User signed in with Email/Password:", user);
+      const userName = user.displayName || user.email; // Use displayName for Google, email for Email/Password
+      const userNameDisplay = document.getElementById('userNameDisplay');
+      userNameDisplay.textContent = `Welcome, ${userName}!`;
+    })
+    .catch((error) => {
+      // Handle Errors
+      console.error("Error signing in with Email/Password:", error);
+    });
+}
 
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+// Example: Sign in with Google
+const googleSignInButton = document.getElementById('googleSignInButton');
+googleSignInButton.addEventListener('click', signInWithGoogle);
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyD9-wiUrzzOC_ru8sBoxSsmAKsWzBQDuvs",
-    authDomain: "pawsindie-cd14.firebaseapp.com",
-    projectId: "pawsindie-cd14",
-    storageBucket: "pawsindie-cd14.appspot.com",
-    messagingSenderId: "1002560556627",
-    appId: "1:1002560556627:web:3a6709764dd9516afd00a6",
-    measurementId: "G-NZN3KYEB71"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-
+// Example: Sign in with Email/Password
+const emailSignInButton = document.getElementById('emailSignInButton');
+emailSignInButton.addEventListener('click', () => {
+  const email = document.getElementById('emailInput').value;
+  const password = document.getElementById('passwordInput').value;
+  signInWithEmailAndPassword(email, password);
+});
